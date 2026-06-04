@@ -31,12 +31,11 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
       >
         <body className="min-h-full flex flex-col">
-           {/* <ConvexClientProvider>  */}
-
+          <ConvexClientProvider>
             <header className="flex justify-end items-center p-4 gap-4 h-16">
               <Show when="signed-out">
                 <SignInButton />
-                <SignUpButton>
+                <SignUpButton asChild>
                   <button className="bg-[#6c47ff] text-white rounded-full font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 cursor-pointer">
                     Sign Up
                   </button>
@@ -46,10 +45,8 @@ export default function RootLayout({
                 <UserButton />
               </Show>
             </header>
-
             {children}
-
-           {/* </ConvexClientProvider> */}
+          </ConvexClientProvider>
         </body>
       </html>
     </ClerkProvider>
