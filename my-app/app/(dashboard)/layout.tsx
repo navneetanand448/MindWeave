@@ -9,13 +9,13 @@ interface DashBoardLayoutProps {
 
 export default function DashboardLayout({ children }: DashBoardLayoutProps) {
   return (
-    <main className="h-full flex">
+    <main className="flex h-full">
       <SideBar />
-      <div className="pl-60px h-full flex w-full">
-        <div className="hidden lg:flex w-64 h-full border-r">
+      <div className="flex h-full w-full pl-[60px]">
+        <div className="hidden h-full w-64 border-r lg:flex">
           <OrgSidebar />
         </div>
-        <div className="flex-1 h-full flex flex-col">
+        <div className="flex h-full flex-1 flex-col">
           <Navbar />
           <div className="flex-1 overflow-y-auto">
             {children}

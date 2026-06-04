@@ -28,8 +28,8 @@ export const Item = ({ id, name, imageUrl }: ItemProps) => {
         <button
           onClick={onClick}
           className={cn(
-            "relative flex h-full w-full cursor-pointer items-center justify-center rounded-md opacity-60 transition hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2",
-            isActive && "opacity-100"
+            "relative flex h-full w-full cursor-pointer items-center justify-center rounded-md border-transparent opacity-50 outline-none transition hover:opacity-100",
+            isActive && "opacity-100 ring-2 ring-white ring-offset-2 ring-offset-blue-950"
           )}
         >
           <Image

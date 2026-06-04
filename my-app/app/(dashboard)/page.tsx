@@ -1,9 +1,7 @@
-import React from 'react'
-
-function page() {
+export default function DashboardPage() {
   return (
-    <div>page</div>
-  )
+    <div className="flex h-full flex-col p-6">
+      <h2 className="text-2xl font-semibold">Dashboard</h2>
+    </div>
+  );
 }
-
-export default page
