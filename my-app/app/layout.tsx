@@ -9,7 +9,7 @@ import {
   SignUpButton,
   UserButton
 } from "@clerk/nextjs";
-
+import { Toaster } from "sonner";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -49,6 +49,7 @@ export default function RootLayout({
               </Show>
             </header>
             <div className="h-[calc(100%-64px)]">
+              <Toaster/>
               {children}
             </div>
           </ConvexClientProvider>
