@@ -19,7 +19,7 @@ export default function OrgSidebar() {
   const favourites = searchParams.get("favourites");
 
   return (
-    <div className="hidden w-[206px] flex-col space-y-6 pl-5 pt-5 lg:flex">
+    <div className="hidden w-206px flex-col space-y-6 pl-5 pt-5 lg:flex">
       <Link href="/">
         <div className="flex items-center gap-x-2 transition hover:opacity-100">
           <Image

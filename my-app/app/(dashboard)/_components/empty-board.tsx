@@ -8,11 +8,8 @@ import { useApiMutation } from "@/hooks/use-api-mutation";
 import { toast } from "sonner";
 
 export const EmptyBoard = () => {
-  // 1. Destructure the organization object
   const { organization } = useOrganization();
   const { mutate, pending } = useApiMutation(api.board.create);
-
-  // 2. Explicitly return null to avoid React render errors
   if (!organization) return null;
 
   const onClick = () => {
