@@ -7,6 +7,8 @@ import { Footer } from "./footer";
 import { Skeleton } from "@/components/ui/skeleton";
 import Actions from "@/components/action";
 import { MoreHorizontal } from "lucide-react";
+import { api } from "@/convex/_generated/api";
+import { useApiMutation } from "@/hooks/use-api-mutation";
 interface BoardCardProps {
   id: string;
   title: string;
@@ -17,7 +19,7 @@ interface BoardCardProps {
   orgId: string;
   isFavourite: boolean;
 }
-
+import { toast } from "sonner";
 export default function BoardCard({
   id,
   title,
@@ -35,10 +37,24 @@ export default function BoardCard({
   const createdAtLabel = formatDistanceToNow(createdAt, {
     addSuffix: true,
   });
-
+  const {
+    mutate:onFavourite,
+    pending:pendingFavourite
+  }=useApiMutation(api.board.favourite);
+  const {
+    mutate:onUnfavourite,
+    pending:pendingUnFavourite
+  }=useApiMutation(api.board.Unfavourite);
+  const toggleFavourite=()=>{
+ if (isFavourite) {
+      onUnfavourite({ id }).catch(() => toast.error("Failed to unfavorite"));
+    } else {
+      onFavourite({ id, orgId }).catch(() => toast.error("Failed to favorite"));
+    }
+  }
   return (
     <Link href={`/board/${id}`}>
-      <div className="group flex aspect-[100/127] flex-col justify-between overflow-hidden rounded-lg border bg-white shadow-sm transition-all hover:shadow-md">
+      <div className="group flex aspect-100/127 flex-col justify-between overflow-hidden rounded-lg border bg-white shadow-sm transition-all hover:shadow-md">
         <div className="relative flex-1 bg-blue-50">
           <Image
             src={imageUrl}
@@ -66,8 +82,8 @@ export default function BoardCard({
           title={title}
           authorLabel={authorLabel}
           createdAtLabel={createdAtLabel}
-          onClick={() => {}}
-          disabled={false}
+          onClick={toggleFavourite}
+          disabled={pendingFavourite || pendingUnFavourite}
         />
       </div>
     </Link>
