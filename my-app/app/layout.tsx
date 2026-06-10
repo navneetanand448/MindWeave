@@ -10,6 +10,7 @@ import {
   UserButton
 } from "@clerk/nextjs";
 import { Toaster } from "sonner";
+import { ModalProvider } from "@/providers/modal-providers";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -50,6 +51,7 @@ export default function RootLayout({
             </header>
             <div className="h-[calc(100%-64px)]">
               <Toaster/>
+              <ModalProvider/> 
               {children}
             </div>
           </ConvexClientProvider>
