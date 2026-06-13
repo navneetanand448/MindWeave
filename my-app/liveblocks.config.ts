@@ -45,5 +45,7 @@ declare global {
     };
   }
 }
-
+const client=createClient({
+  authEndPoint:"/api/liveblocks-auth"
+})
 export {};
