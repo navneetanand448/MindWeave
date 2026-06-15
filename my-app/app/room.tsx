@@ -14,9 +14,9 @@ interface RoomProps{
 export function Room({ children,roomId,fallback }: RoomProps) {
   return (
     <LiveblocksProvider publicApiKey={process.env.NEXT_PUBLIC_LIVEBLOCKS_PUBLIC_KEY!}>
-      <RoomProvider id={roomId}>
+      <RoomProvider id={roomId} initialPresence={{}}>
         <ClientSideSuspense fallback={fallback}>
-          {children}
+          {()=>children}
         </ClientSideSuspense>
       </RoomProvider>
     </LiveblocksProvider>

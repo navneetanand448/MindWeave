@@ -1,6 +1,12 @@
 // Define Liveblocks types for your application
 // https://liveblocks.io/docs/api-reference/liveblocks-react#Typing-your-data
+import { createClient } from "@liveblocks/client";
+import { createRoomContext } from "@liveblocks/react";
+const client=createClient({
+  publicApiKey:"pk_dev_5m_Hpki8nWZkJg6JMXaXWrUxgQZs1zFfA7MktTVoxU7hbo7Ulmz22BG8na2O_hRU",
+})
 declare global {
+
   interface Liveblocks {
     // Each user's Presence, for useMyPresence, useOthers, etc.
     Presence: {
