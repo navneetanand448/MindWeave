@@ -20,7 +20,7 @@ export async function POST(request:Request){
     return new Response("Unauthorized");
   }
   const userInfo={
-    name:user.firstName!,
+    name:user.firstName || "Team-mate" ,
     picture:user.imageUrl,
   }
   const session=liveblocks.prepareSession(
