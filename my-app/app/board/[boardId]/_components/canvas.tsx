@@ -1,8 +1,20 @@
+"use client"
 import React from 'react'
-
-function Canvas() {
+import { Toolbar } from './toolbar'
+import { Participants } from './participants'
+import { Info } from './info'
+import { useSelf } from '@liveblocks/react/suspense'
+interface CanvasProps{
+  boardId:string;
+}
+function Canvas({boardId}:CanvasProps) {
+  const info=useSelf((me)=>me.info);
   return (
-    <div>C</div>
+    <main className='h-full w-full relative bg-neutral-100 touch-none'>
+      <Info/>
+      <Participants/>
+      <Toolbar/>
+    </main>
   )
 }
 

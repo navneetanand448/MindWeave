@@ -3,7 +3,7 @@
 import { createClient } from "@liveblocks/client";
 import { createRoomContext } from "@liveblocks/react";
 const client=createClient({
-  publicApiKey:"pk_dev_5m_Hpki8nWZkJg6JMXaXWrUxgQZs1zFfA7MktTVoxU7hbo7Ulmz22BG8na2O_hRU",
+ authEndpoint:"api/liveblocks-auth",
 })
 declare global {
 
@@ -24,9 +24,11 @@ declare global {
     UserMeta: {
       id: string;
       info: {
-        // Example properties, for useSelf, useUser, useOthers, etc.
-        // name: string;
-        // avatar: string;
+        id?:string;
+        info?:{
+          name?:string;
+          picture?:string;
+        }
       };
     };
 
