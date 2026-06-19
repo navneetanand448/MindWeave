@@ -14,8 +14,6 @@ interface DashboardPageProps {
 
 export default function DashboardPage({ searchParams }: DashboardPageProps) {
   const { organization } = useOrganization();
-
-  // Unwrap the Promise to access the URL queries safely
   const query = use(searchParams);
 
   return (

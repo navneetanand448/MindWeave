@@ -11,9 +11,9 @@ export const EmptyBoard = () => {
   const { organization } = useOrganization();
   const { mutate, pending } = useApiMutation(api.board.create);
   if (!organization) return null;
-
+      const router=useRouter();
   const onClick = () => {
-    const router=useRouter();
+
     if (!organization) return;
 
     mutate({

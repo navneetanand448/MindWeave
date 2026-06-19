@@ -1,6 +1,6 @@
 import { Plus } from "lucide-react";
 import { OrganizationProfile} from "@clerk/nextjs";
-import { Dialog,DialogContent,DialogTrigger
+import { Dialog,DialogContent,DialogTrigger,DialogTitle
  } from "@/components/ui/dialog";
  import { Button } from "@/components/ui/button";
  export const InviteButton=()=>{
@@ -12,8 +12,12 @@ import { Dialog,DialogContent,DialogTrigger
         Invite Members
         </Button>
       </DialogTrigger>
+
       <DialogContent>
-        <OrganizationProfile/>
+        <DialogTitle className="sr-only">
+          Manage Organization Profile
+        </DialogTitle>
+        <OrganizationProfile routing="hash"/>
       </DialogContent>
     </Dialog>
   )
