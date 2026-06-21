@@ -5,6 +5,7 @@ import {
   LiveblocksProvider,
   RoomProvider,
   ClientSideSuspense,
+  
 } from "@liveblocks/react/suspense";
 interface RoomProps{
   children: ReactNode
@@ -14,7 +15,9 @@ interface RoomProps{
 export function Room({ children,roomId,fallback }: RoomProps) {
   return (
     <LiveblocksProvider publicApiKey={process.env.NEXT_PUBLIC_LIVEBLOCKS_PUBLIC_KEY!}>
-      <RoomProvider id={roomId} initialPresence={{}}>
+      <RoomProvider id={roomId} initialPresence={{
+        cursor:null,
+      }}>
         <ClientSideSuspense fallback={fallback}>
           {()=>children}
         </ClientSideSuspense>
