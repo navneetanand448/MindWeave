@@ -48,7 +48,7 @@ export const useSelectionBounds = () => {
   return useStorage((root) => {
     const selectedLayers = selection
       .map((layerId) => {
-        // 🛡️ Safe check for LiveMap vs standard Object
+
         if (root.layers) {
           if (typeof root.layers.get === "function") {
             return root.layers.get(layerId);
@@ -57,8 +57,7 @@ export const useSelectionBounds = () => {
         }
         return undefined;
       })
-      .filter(Boolean) as Layer[]; // Ensure TypeScript knows these are valid Layers
-
+      .filter(Boolean) as Layer[];
     return boundingBox(selectedLayers);
   }, shallow);
 };
