@@ -11,7 +11,7 @@ import { CursorPresence } from './cursor-presence'
 import { connectionIdToColor, pointerEventToCanvasPoint, } from '@/lib/utils'
 import { LiveObject } from '@liveblocks/client'
 import { LayerPreview } from './layer-preview'
-
+import { SelectionBox } from './selection-box'
 const MAX_LAYERS = 100;
 
 interface CanvasProps {
@@ -22,8 +22,8 @@ function Canvas({ boardId }: CanvasProps) {
   const layersId = useStorage((root) => root.layersId);
   const [camera, setCamera] = useState<Camera>({ x: 0, y: 0 });
   const [lastUsedColor, setLastUsedColor] = useState<Color>({
-    r: 0,
-    g: 0,
+    r:255,
+    g: 255,
     b: 0,
   });
   const [canvasState, setCanvasState] = useState<CanvasState>({
@@ -150,7 +150,7 @@ function Canvas({ boardId }: CanvasProps) {
         redo={history.redo}
       />
       <svg
-        className="h-100vh w-100vw"
+        className="h-screen w-screen"
         onPointerMove={onPointerMove}
         onPointerLeave={onPointerLeave}
         onWheel={onWheel}
@@ -165,6 +165,9 @@ function Canvas({ boardId }: CanvasProps) {
               selectionColor={layerIdToColorSelection[layerId]}
             />
           ))}
+          <SelectionBox
+          onResizeHandlePointerDown={()=>{}}
+          />
           <CursorPresence />
         </g>
       </svg>
