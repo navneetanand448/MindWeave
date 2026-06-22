@@ -1,4 +1,5 @@
 "use client"
+import { SelectionTools } from './selection-tool'
 
 import React, { useCallback, useState,useMemo } from 'react'
 import { nanoid } from 'nanoid'
@@ -235,6 +236,10 @@ point:Point)=>{
         canUndo={canUndo}
         undo={history.undo}
         redo={history.redo}
+      />
+      <SelectionTools
+      camera={camera}
+      setLastUsedColor={setLastUsedColor}
       />
       <svg
         className="h-screen w-screen"
