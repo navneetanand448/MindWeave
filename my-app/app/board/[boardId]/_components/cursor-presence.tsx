@@ -3,6 +3,8 @@
 import { memo } from "react";
 import { shallow, useOthersConnectionIds, useOthersMapped } from "@liveblocks/react/suspense";
 import { Cursor } from "./cursor";
+import { Path } from "./path";
+import { colorToCss } from "@/lib/utils";
 const Cursors = () => {
   const ids = useOthersConnectionIds();
 

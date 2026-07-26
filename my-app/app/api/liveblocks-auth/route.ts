@@ -1,7 +1,7 @@
 import { Liveblocks } from "@liveblocks/node";
 import { ConvexHttpClient } from "convex/browser";
 import { api } from "@/convex/_generated/api";
-import { auth,currentUser } from "@clerk/nextjs";
+import { auth,currentUser } from "@clerk/nextjs/server";
 const liveblocks = new Liveblocks({
   secret: process.env.LIVEBLOCKS_SECRET_KEY!,
 });
@@ -15,10 +15,11 @@ export async function POST(request:Request){
     return new Response("Unauthorized",{status:403});
   }
   const {room}=await request.json();
-  const board=await convex.query(api.board.get,{id:room})
-  if(board?orgId!==authorization.orgId){
-    return new Response("Unauthorized");
-  }
+const board = await convex.query(api.board.get, { id: room });
+if (board?.orgId !== authorization.orgId) {
+  return new Response("Unauthorized");
+}
+
   const userInfo={
     name:user.firstName || "Team-mate" ,
     picture:user.imageUrl,
