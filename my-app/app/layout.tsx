@@ -11,6 +11,7 @@ import {
 } from "@clerk/nextjs";
 import { Toaster } from "sonner";
 import { ModalProvider } from "@/providers/modal-providers";
+import "@/liveblocks.config";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -51,7 +52,7 @@ export default function RootLayout({
             </header>
             <div className="h-[calc(100%-64px)]">
               <Toaster/>
-              <ModalProvider/> 
+              <ModalProvider/>
               {children}
             </div>
           </ConvexClientProvider>

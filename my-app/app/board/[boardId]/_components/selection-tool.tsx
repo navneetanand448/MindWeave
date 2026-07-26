@@ -22,10 +22,9 @@ export const SelectionTools=memo(({
   const moveToFront = useMutation((
     { storage }
   ) => {
-    const liveLayerIds = storage.get("layerIds");
+    const liveLayerIds = storage.get("layersId")
     const indices: number[] = [];
-
-    const arr = liveLayerIds.toImmutable();
+const arr = Array.from(liveLayerIds);
 
     for (let i = 0; i < arr.length; i++) {
       if (selection.includes(arr[i])) {
@@ -44,10 +43,10 @@ export const SelectionTools=memo(({
   const moveToBack = useMutation((
     { storage }
   ) => {
-    const liveLayerIds = storage.get("layerIds");
+    const liveLayerIds =storage.get("layersId")
     const indices: number[] = [];
 
-    const arr = liveLayerIds.toImmutable();
+   const arr = liveLayerIds.toJSON();
 
     for (let i = 0; i < arr.length; i++) {
       if (selection.includes(arr[i])) {

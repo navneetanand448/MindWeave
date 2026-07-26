@@ -6,7 +6,16 @@ import { nanoid } from 'nanoid'
 import { Toolbar } from './toolbar'
 import { Participants } from './participants'
 import { Info } from './info'
-import { CanvasMode, CanvasState, Camera, Color, LayerType, Point } from '@/types/canvas'
+import {
+  CanvasMode,
+  CanvasState,
+  Camera,
+  Color,
+  LayerType,
+  Point,
+  Side,
+  XYWH,
+} from "@/types/canvas";
 import { useHistory, useCanUndo, useCanRedo, useMutation, useStorage, useOthersMapped, useSelf } from '@liveblocks/react/suspense'
 import { CursorPresence } from './cursor-presence'
 import { colorToCss, connectionIdToColor, findIntersectingLayersWithRectangle, penPointsToPathLayer, pointerEventToCanvasPoint,resizeBounds } from '@/lib/utils'

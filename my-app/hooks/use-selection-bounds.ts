@@ -51,7 +51,7 @@ export const useSelectionBounds = () => {
 
         if (root.layers) {
           if (typeof root.layers.get === "function") {
-            return root.layers.get(layerId);
+            return root.layers[layerId];
           }
           return (root.layers as any)[layerId];
         }

@@ -18,7 +18,7 @@ export const SelectionBox = memo(({
     if (soleLayerId && root.layers) {
       let layer;
       if (typeof root.layers.get === "function") {
-        layer = root.layers.get(soleLayerId);
+       layer = root.layers[soleLayerId];
       } else {
         layer = (root.layers as any)[soleLayerId];
       }
