@@ -1,17 +1,13 @@
+import "@/liveblocks.config";
+import { ConvexClientProvider } from "@/providers/convex-client-provider";
+import { ModalProvider } from "@/providers/modal-providers";
+import {
+    ClerkProvider,
+} from "@clerk/nextjs";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
-import { ConvexClientProvider } from "@/providers/convex-client-provider";
-import {
-  ClerkProvider,
-  Show,
-  SignInButton,
-  SignUpButton,
-  UserButton
-} from "@clerk/nextjs";
 import { Toaster } from "sonner";
-import { ModalProvider } from "@/providers/modal-providers";
-import "@/liveblocks.config";
+import "./globals.css";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -37,20 +33,7 @@ export default function RootLayout({
       <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full`}>
         <body className="h-full antialiased">
           <ConvexClientProvider>
-            <header className="flex h-16 items-center justify-end gap-4 p-4">
-              <Show when="signed-out">
-                <SignInButton />
-                <SignUpButton mode="modal">
-                  <span className="inline-flex h-10 cursor-pointer items-center justify-center rounded-full bg-[#6c47ff] px-4 text-sm font-medium text-white transition hover:bg-[#5b3ce0] sm:h-12 sm:px-5 sm:text-base">
-                    Sign Up
-                  </span>
-                </SignUpButton>
-              </Show>
-              <Show when="signed-in">
-                <UserButton />
-              </Show>
-            </header>
-            <div className="h-[calc(100%-64px)]">
+            <div className="h-full">
               <Toaster/>
               <ModalProvider/>
               {children}

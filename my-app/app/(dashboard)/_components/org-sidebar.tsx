@@ -1,12 +1,11 @@
 "use client";
 
-import React from "react";
-import Link from "next/link";
-import Image from "next/image";
-import { Poppins } from "next/font/google";
-import { OrganizationSwitcher } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
+import { OrganizationSwitcher } from "@clerk/nextjs";
 import { LayoutDashboard, Star } from "lucide-react";
+import { Poppins } from "next/font/google";
+import Image from "next/image";
+import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 
 const font = Poppins({
@@ -19,7 +18,7 @@ export default function OrgSidebar() {
   const favourites = searchParams.get("favourites");
 
   return (
-    <div className="hidden w-206px flex-col space-y-6 pl-5 pt-5 lg:flex">
+    <div className="hidden w-full flex-col space-y-6 pl-5 pt-5 lg:flex">
       <Link href="/">
         <div className="flex items-center gap-x-2 transition hover:opacity-100">
           <Image

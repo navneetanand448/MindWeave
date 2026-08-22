@@ -1,12 +1,12 @@
 import {
-  Circle,
-  MousePointer2,
-  Pencil,
-  Redo2,
-  Square,
-  StickyNote,
-  Type,
-  Undo2
+    Circle,
+    MousePointer2,
+    Pencil,
+    Redo2,
+    Square,
+    StickyNote,
+    Type,
+    Undo2
 } from "lucide-react";
 import { ToolButton } from "./tool-button";
 
@@ -30,7 +30,7 @@ export const Toolbar = ({
   canRedo,
 }: ToolbarProps) => {
   return (
-    <div className="absolute top-[50%] -translate-y-50% left-2 flex flex-col gap-y-4">
+    <div className="absolute left-2 top-1/2 z-20 flex -translate-y-1/2 flex-col gap-y-4">
       <div className="bg-white rounded-md p-1.5 flex gap-y-1 flex-col items-center shadow-md">
         <ToolButton
           label="Select"
@@ -125,6 +125,6 @@ export const Toolbar = ({
 
 export const ToolbarSkeleton = () => {
   return (
-    <div className="absolute top-[50%] -translate-y-50% left-2 flex flex-col gap-y-4 bg-white h-[360px] w-[52px] shadow-md rounded-md" />
+    <div className="absolute left-2 top-1/2 flex h-[360px] -translate-y-1/2 flex-col gap-y-4 rounded-md bg-white shadow-md w-[52px]" />
   );
 };

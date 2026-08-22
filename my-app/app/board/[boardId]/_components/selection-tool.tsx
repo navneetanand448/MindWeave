@@ -1,13 +1,13 @@
 "use client"
-import { useSelectionBounds } from "@/hooks/use-selection-bounds";
-import { Camera,Color } from "@/types/canvas"
-import { useMutation, useSelf } from "@liveblocks/react/suspense";
-import { memo } from "react"
-import { ColorPicker } from "./color-picker";
-import { useDeleteLayers } from "@/hooks/use-delete-layers";
 import { Button } from "@/components/ui/button";
 import { Hint } from "@/components/ui/Hint";
-import { Trash2,BringToFront,SendToBack } from "lucide-react";
+import { useDeleteLayers } from "@/hooks/use-delete-layers";
+import { useSelectionBounds } from "@/hooks/use-selection-bounds";
+import { Camera, Color } from "@/types/canvas";
+import { useMutation, useSelf } from "@liveblocks/react/suspense";
+import { BringToFront, SendToBack, Trash2 } from "lucide-react";
+import { memo } from "react";
+import { ColorPicker } from "./color-picker";
 interface SelectionToolProps{
   camera:Camera;
   setLastUsedColor:(color:Color)=>void;
@@ -78,7 +78,7 @@ const arr = Array.from(liveLayerIds);
   const y=selectionBounds.y +camera.y;
   return(
        <div
-      className="absolute p-3 rounded-xl bg-white shadow-sm border flex select-none"
+      className="absolute z-20 flex select-none rounded-xl border bg-white p-3 shadow-sm"
       style={{
         transform: `translate(
           calc(${x}px - 50%),
@@ -102,7 +102,7 @@ const arr = Array.from(liveLayerIds);
         </Hint>
         <Hint label="Send To Back">
           <Button
-          onChangeCapture={moveToBack}
+          onClick={moveToBack}
           variant="board"
           size="icon"
           >

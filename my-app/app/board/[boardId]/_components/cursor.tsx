@@ -1,15 +1,13 @@
 "use client"
-import { memo } from "react"
-import { MousePointer2 } from "lucide-react"
-import { connectionIdToColor } from "@/lib/utils"
+import { connectionIdToColor } from "@/lib/utils";
 import { useOther } from "@liveblocks/react/suspense";
+import { MousePointer2 } from "lucide-react";
+import { memo } from "react";
 interface CursorProps{
   connectionId:number;
 }
 export const Cursor=memo(({connectionId}:CursorProps)=>{
-  const info=useOther(connectionId,(user)=>user?.info)
-    const cursor=useOther(connectionId,(user)=>user.presence.cursor)
-  const name=info?.name || "Teammate"
+  const cursor=useOther(connectionId,(user)=>user.presence.cursor)
   if(!cursor) return null;
   const {x,y}=cursor
   return(
@@ -19,7 +17,7 @@ export const Cursor=memo(({connectionId}:CursorProps)=>{
     }}
     height={50}
     width={50}
-    className="relative drop-shadow-md"
+    className="pointer-events-none relative drop-shadow-md"
     >
       <MousePointer2
       className="h-5 w-5"

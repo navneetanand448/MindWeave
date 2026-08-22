@@ -1,28 +1,28 @@
 "use client"
 import { SelectionTools } from './selection-tool'
 
-import React, { useCallback, useState,useMemo } from 'react'
-import { nanoid } from 'nanoid'
-import { Toolbar } from './toolbar'
-import { Participants } from './participants'
-import { Info } from './info'
+import { colorToCss, connectionIdToColor, findIntersectingLayersWithRectangle, penPointsToPathLayer, pointerEventToCanvasPoint, resizeBounds } from '@/lib/utils'
 import {
-  CanvasMode,
-  CanvasState,
-  Camera,
-  Color,
-  LayerType,
-  Point,
-  Side,
-  XYWH,
-} from "@/types/canvas";
-import { useHistory, useCanUndo, useCanRedo, useMutation, useStorage, useOthersMapped, useSelf } from '@liveblocks/react/suspense'
-import { CursorPresence } from './cursor-presence'
-import { colorToCss, connectionIdToColor, findIntersectingLayersWithRectangle, penPointsToPathLayer, pointerEventToCanvasPoint,resizeBounds } from '@/lib/utils'
+    Camera,
+    CanvasMode,
+    CanvasState,
+    Color,
+    LayerType,
+    Point,
+    Side,
+    XYWH,
+} from "@/types/canvas"
 import { LiveObject } from '@liveblocks/client'
+import { useCanRedo, useCanUndo, useHistory, useMutation, useOthersMapped, useSelf, useStorage } from '@liveblocks/react/suspense'
+import { nanoid } from 'nanoid'
+import React, { useCallback, useMemo, useRef, useState } from 'react'
+import { CursorPresence } from './cursor-presence'
+import { Info } from './info'
 import { LayerPreview } from './layer-preview'
-import { SelectionBox } from './selection-box'
+import { Participants } from './participants'
 import { Path } from './path'
+import { SelectionBox } from './selection-box'
+import { Toolbar } from './toolbar'
 const MAX_LAYERS = 100;
 
 interface CanvasProps {
@@ -40,6 +40,7 @@ function Canvas({ boardId }: CanvasProps) {
   const [canvasState, setCanvasState] = useState<CanvasState>({
     mode: CanvasMode.None,
   });
+  const lastCursorUpdate = useRef(0);
 
   const history = useHistory();
   const canUndo = useCanUndo();
@@ -328,7 +329,11 @@ point:Point)=>{
     else if(canvasState.mode===CanvasMode.Pencil){
       continueDrawing(current,e);
     }
-        setMyPresence({ cursor: current });
+    const now = performance.now();
+    if (now - lastCursorUpdate.current >= 33) {
+      lastCursorUpdate.current = now;
+      setMyPresence({ cursor: current });
+    }
   }, [
     canvasState,
   camera,

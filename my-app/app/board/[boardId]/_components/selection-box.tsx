@@ -2,7 +2,7 @@
 import { useSelectionBounds } from "@/hooks/use-selection-bounds";
 import { LayerType, Side, XYWH } from "@/types/canvas";
 import { useSelf, useStorage } from "@liveblocks/react/suspense";
-import { memo } from "react"
+import { memo } from "react";
 interface SelectionBoxProps{
   onResizeHandlePointerDown:(corner:Side,initialBounds:XYWH)=>void;
 }
@@ -16,12 +16,7 @@ export const SelectionBox = memo(({
 
   const isShowingHandles = useStorage((root) => {
     if (soleLayerId && root.layers) {
-      let layer;
-      if (typeof root.layers.get === "function") {
-       layer = root.layers[soleLayerId];
-      } else {
-        layer = (root.layers as any)[soleLayerId];
-      }
+      const layer = root.layers[soleLayerId];
       return layer?.type !== LayerType.Path;
     }
     return false;

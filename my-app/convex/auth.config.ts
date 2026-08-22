@@ -11,4 +11,4 @@ export default {
       applicationID: "convex",
     },
   ]
-} satisfies AuthConfig;
+} satisfies AuthConfig; 
